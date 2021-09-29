@@ -11,7 +11,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
-import env
+from env import host, user, password 
 
 
 from sklearn.model_selection import train_test_split
@@ -52,12 +52,14 @@ def get_db_url(database):
     return url
 
 
+
 # acquire zillow data using the query
 def get_zillow(sql):
     url = get_db_url('zillow')
     zillow_df = pd.read_sql(sql, url, index_col='id')
     return zillow_df
 
+# zillow_df = get_zillow()
 
 def handle_missing_values(df, prop_required_column = .5, prop_required_row = .70):
 	#function that will drop rows or columns based on the percent of values that are missing:\
